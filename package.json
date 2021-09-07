@@ -2,7 +2,7 @@
   "name": "github-doorcat",
   "displayName": "Doorcat for GitHub",
   "version": "0.0.1",
-  "description": "Navigate GitHub effortlessly",
+  "description": "Supercharges GitHub navbar for quicker navigation.",
   "private": true,
   "scripts": {
     "dev": "npm run clear && cross-env NODE_ENV=development run-p dev:*",
