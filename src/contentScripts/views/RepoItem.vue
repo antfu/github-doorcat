@@ -1,21 +1,12 @@
 <script setup lang="ts">
 import { options, repos } from '../storage'
+import { togglePinnedRepo } from '../repos'
 
 const props = defineProps<{
   repo: string
 }>()
 
 const pinned = computed(() => repos.value.pinned.includes(props.repo))
-
-function toggle(e: MouseEvent) {
-  e.stopImmediatePropagation()
-  e.preventDefault()
-
-  if (!pinned.value)
-    repos.value.pinned.unshift(props.repo)
-  else
-    repos.value.pinned.filter(x => x !== props.repo)
-}
 </script>
 
 <template>
@@ -44,7 +35,7 @@ function toggle(e: MouseEvent) {
       title="Pin"
       class="icon-button"
       style="margin: auto 0; display: flex;"
-      @click="toggle"
+      @click.prevent="togglePinnedRepo(repo)"
     >
       <mdi:bookmark v-if="pinned" style="margin: auto;" />
       <mdi:bookmark-outline v-else style="margin: auto;" />

@@ -1,4 +1,4 @@
-import { issues } from './storage'
+import { issues, pulls } from './storage'
 import { Issue } from './types'
 
 const MAX_RECENT_ISSUES = 20
@@ -25,6 +25,7 @@ export function scanIssue() {
         : 'unknown'
 
   updateIssue({
+    id: `${repo}/${type}/${code}`,
     state,
     repo,
     number: +code,
@@ -35,13 +36,27 @@ export function scanIssue() {
 }
 
 function updateIssue(issue: Issue) {
-  const existing = [...issues.value.pinned, ...issues.value.recent].find(i => i.repo === issue.repo && i.number === issue.number)
+  const existing = [...issues.value.recent, ...pulls.value.recent].find(i => i.id === issue.id)
 
   if (existing)
-    Object.assign(existing, issue)
-  else
-    issues.value.recent.unshift(issue)
+    return Object.assign(existing, issue)
 
-  if (issues.value.recent.length > MAX_RECENT_ISSUES)
-    issues.value.recent.splice(MAX_RECENT_ISSUES, issues.value.recent.length - MAX_RECENT_ISSUES)
+  const target = issue.type === 'issues'
+    ? issues.value.recent
+    : pulls.value.recent
+
+  target.unshift(issue)
+  if (target.length > MAX_RECENT_ISSUES)
+    target.splice(MAX_RECENT_ISSUES, target.length - MAX_RECENT_ISSUES)
+}
+
+export function togglePinnedIssue(issue: Issue) {
+  const target = issue.type === 'issues'
+    ? issues.value
+    : pulls.value
+
+  if (target.pinned.find(i => i.id === issue.id))
+    target.pinned = target.pinned.filter(i => i.id !== issue.id)
+  else
+    target.pinned.unshift(issue)
 }

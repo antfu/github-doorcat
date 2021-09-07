@@ -5,7 +5,8 @@ defineProps<{
   href: string
 }>()
 
-const recent = computed(() => issues.value.recent.filter(i => i.type === 'issues').slice(0, 10))
+const pinnedIds = computed(() => issues.value.pinned.map(i => i.id))
+const recent = computed(() => issues.value.recent.filter(i => !pinnedIds.value.includes(i.id)).slice(0, 10))
 </script>
 
 <template>
@@ -18,13 +19,19 @@ const recent = computed(() => issues.value.recent.filter(i => i.type === 'issues
         class="dropdown-item"
         role="menuitem"
         :href="href"
-      >My Issues</a>
-      <div role="none" class="dropdown-divider"></div>
+      >Issues Created</a>
 
-      <div class="color-text-secondary" style="margin: 0 0 5px 10px;">
-        Recent
-      </div>
-      <IssueItem v-for="i of recent" :key="i.repo + i.number" :issue="i" />
+     <template v-if="issues.pinned.length">
+        <div role="none" class="dropdown-divider"></div>
+        <div class="doorcat-subheader">Pinned</div>
+        <IssueItem v-for="i of issues.pinned" :key="i.id" :issue="i" />
+      </template>
+
+      <template v-if="recent.length">
+        <div role="none" class="dropdown-divider"></div>
+        <div class="doorcat-subheader">Recent</div>
+        <IssueItem v-for="i of recent" :key="i.id" :issue="i" />
+      </template>
     </template>
   </DropdownMenu>
 </template>

@@ -35,5 +35,11 @@ withDefaults(defineProps<{
   &::after {
     right: calc(50% - 3px);
   }
+
+  .doorcat-subheader {
+    margin: 0 0 5px 10px;
+    color: var(--color-text-secondary) !important;
+    font-size: 0.9em;
+  }
 }
 </style>

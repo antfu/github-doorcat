@@ -1,9 +1,16 @@
 <script setup lang="ts">
 import type { Issue } from '../types'
+import { togglePinnedIssue } from '../issues'
+import { issues, pulls } from '../storage'
 
-defineProps<{
+const props = defineProps<{
   issue: Issue
 }>()
+
+const pinned = computed(() =>
+  !!pulls.value.pinned.find(i => i.id === props.issue.id)
+  || !!issues.value.pinned.find(i => i.id === props.issue.id),
+)
 </script>
 
 <template>
@@ -28,19 +35,19 @@ defineProps<{
 
     <!-- name -->
     <div style="margin: auto 0; flex: 1 1 auto; display: flex; flex-direction: column; overflow: hidden;">
-      <div class="f6 color-text-tertiary" style="margin-bottom: -3px;">{{ issue.repo }} <span>#{{issue.number}}</span></div>
-      <div style="text-overflow: ellipsis;">{{ issue.title }}</div>
+      <div class="f6 color-text-tertiary" style="margin-bottom: -3px;">{{ issue.repo }} <span>#{{ issue.number }}</span></div>
+      <div style="text-overflow: ellipsis; overflow: hidden;">{{ issue.title }}</div>
     </div>
 
     <!-- pin -->
-    <!-- <a
+    <a
       title="Pin"
       class="icon-button"
       style="margin: auto 0; display: flex;"
-      @click="toggle"
+      @click.prevent="togglePinnedIssue(issue)"
     >
       <mdi:bookmark v-if="pinned" style="margin: auto;" />
       <mdi:bookmark-outline v-else style="margin: auto;" />
-    </a> -->
+    </a>
   </a>
 </template>

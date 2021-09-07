@@ -1,9 +1,10 @@
+/* eslint-disable no-console */
 import { createApp } from 'vue'
 import Repos from './views/Repos.vue'
 import Pulls from './views/Pulls.vue'
 import Issues from './views/Issues.vue'
 import { userid } from './env'
-import { updateRecentRepos } from './storage'
+import { updateRecentRepos } from './repos'
 import { scanIssue } from './issues'
 
 (async() => {

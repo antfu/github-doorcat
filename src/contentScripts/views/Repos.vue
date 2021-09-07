@@ -10,7 +10,7 @@ const recent = computed(() => repos.value.recent.filter(i => !repos.value.pinned
       Repos
     </template>
     <template #>
-      <!-- Pinned -->
+      <div class="doorcat-subheader">Pinned</div>
       <template v-if="repos.pinned.length">
         <RepoItem
           v-for="i of repos.pinned"
@@ -20,11 +20,7 @@ const recent = computed(() => repos.value.recent.filter(i => !repos.value.pinned
         <div role="none" class="dropdown-divider"></div>
       </template>
 
-      <div class="color-text-secondary" style="margin: 0 0 5px 10px;">
-        Recent
-      </div>
-
-      <!-- Recent -->
+      <div class="doorcat-subheader">Recent</div>
       <RepoItem
         v-for="i of recent"
         :key="i"
