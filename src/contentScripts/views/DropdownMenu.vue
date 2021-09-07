@@ -25,7 +25,7 @@ withDefaults(defineProps<{
 
 <style lang="postcss">
 .doorcat-menu {
-  transform: translateX(50%) translateY(3px);
+  transform: translateX(50%) translateY(5px);
   --color-state-hover-primary-bg: rgba(125, 125, 125, 0.15);
 
   &::before {

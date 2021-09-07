@@ -26,7 +26,7 @@ export const issues = useStorage<{
 // TODO: move to options pages and pass by messages
 export const options = ref({
   showAvatar: true,
-  showOwnerName: false,
+  showOwnerName: true,
   githubDev: true,
 })
 

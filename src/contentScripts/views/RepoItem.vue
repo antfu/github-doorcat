@@ -34,9 +34,9 @@ function toggle(e: MouseEvent) {
     />
 
     <!-- name -->
-    <div style="margin: auto 0; flex: 1 1 auto;">
+    <div style="margin: auto 0; flex: 1 1 auto; overflow: hidden; text-overflow: ellipsis;">
       <span v-if="options.showOwnerName" style="opacity:0.5">{{ repo.split('/')[0] }}/</span>
-      <span>{{ repo.split('/')[1] }}</span>
+      <span style="text-overflow: ellipsis;">{{ repo.split('/')[1] }}</span>
     </div>
 
     <!-- pin -->

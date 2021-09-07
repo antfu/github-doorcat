@@ -34,6 +34,9 @@ import { scanIssue } from './issues'
   createApp(Pulls, { href: pullsEl.href }).mount(pulls)
   createApp(Repos).mount(repos)
 
+  // listen to github page loaded event
+  document.addEventListener('pjax:end', () => scanIssue())
   scanIssue()
+
   await updateRecentRepos()
 })()

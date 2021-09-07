@@ -11,7 +11,10 @@ export function scanIssue() {
 
   const repo = `${owner}/${name}`
   const title = document.querySelector('.js-issue-title')?.textContent || ''
-  const stateEl = document.querySelector('.State')!
+  const stateEl = document.querySelector('.State')
+
+  if (!title || !stateEl)
+    return
 
   const state = stateEl.classList.contains('State--open')
     ? 'open'

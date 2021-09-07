@@ -27,9 +27,9 @@ defineProps<{
     </div>
 
     <!-- name -->
-    <div style="margin: auto 0; flex: 1 1 auto; display: flex; flex-direction: column;">
+    <div style="margin: auto 0; flex: 1 1 auto; display: flex; flex-direction: column; overflow: hidden;">
       <div class="f6 color-text-tertiary" style="margin-bottom: -3px;">{{ issue.repo }} <span>#{{issue.number}}</span></div>
-      <div>{{ issue.title }}</div>
+      <div style="text-overflow: ellipsis;">{{ issue.title }}</div>
     </div>
 
     <!-- pin -->
