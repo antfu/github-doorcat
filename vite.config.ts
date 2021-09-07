@@ -19,7 +19,15 @@ export const sharedConfig: UserConfig = {
     __DEV__: isDev,
   },
   plugins: [
-    Vue(),
+    Vue({
+      template: {
+        compilerOptions: {
+          isCustomElement(tag) {
+            return ['details-menu'].includes(tag)
+          },
+        },
+      },
+    }),
 
     AutoImport({
       imports: [
