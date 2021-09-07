@@ -1,4 +1,4 @@
-# GitHub Dashboard
+# Doorcat for GitHub
 
 Navigate GitHub effortlessly.
 

@@ -9,7 +9,7 @@ defineProps<{
 <template>
   <a
     role="menuitem"
-    class="dropdown-item gh-dashboard-item"
+    class="dropdown-item doorcat-item"
     :href="`/${issue.repo}/${issue.type}/${issue.number}`"
     style="display: flex;"
   >

@@ -11,13 +11,12 @@ withDefaults(defineProps<{
     <details class="details-overlay details-reset">
       <summary
         class="Header-link"
-        aria-label="Dashboard"
         aria-haspopup="menu"
         role="button"
       >
         <slot name="label" /> <span class="dropdown-caret"></span>
       </summary>
-      <details-menu class="dropdown-menu dropdown-menu-sw gh-dashboard-menu" :style="{ width: `${width}px` }" role="menu">
+      <details-menu class="dropdown-menu dropdown-menu-sw doorcat-menu" :style="{ width: `${width}px` }" role="menu">
         <slot />
       </details-menu>
     </details>
@@ -25,7 +24,7 @@ withDefaults(defineProps<{
 </template>
 
 <style lang="postcss">
-.gh-dashboard-menu {
+.doorcat-menu {
   transform: translateX(50%);
   --color-state-hover-primary-bg: rgba(125, 125, 125, 0.15);
 

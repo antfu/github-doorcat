@@ -12,7 +12,7 @@ function toggle(e: MouseEvent) {
   e.preventDefault()
 
   if (!pinned.value)
-    repos.value.pinned.push(props.repo)
+    repos.value.pinned.unshift(props.repo)
   else
     repos.value.pinned.filter(x => x !== props.repo)
 }
@@ -21,7 +21,7 @@ function toggle(e: MouseEvent) {
 <template>
   <a
     role="menuitem"
-    class="dropdown-item gh-dashboard-item"
+    class="dropdown-item doorcat-item"
     :href="`/${repo}`"
     style="display: flex;"
   >
@@ -65,7 +65,7 @@ function toggle(e: MouseEvent) {
 </template>
 
 <style lang="postcss">
-.gh-dashboard-item {
+.doorcat-item {
   .icon-button {
     opacity: 0;
     color: #ffffff80;

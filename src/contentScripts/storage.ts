@@ -3,12 +3,13 @@ import { fetchRecentRepos } from './fetch'
 import { Issue } from './types'
 
 const RECENT_REPO_TTL = 1000 * 60 * 30 // 30 minutes
+const APP_NAME = 'doorcat'
 
 export const repos = useStorage<{
   lastUpdated: number
   recent: string[]
   pinned: string[]
-}>('gh-dashboard:repos', {
+}>(`${APP_NAME}:repos`, {
   lastUpdated: 0,
   recent: [],
   pinned: [],
@@ -17,7 +18,7 @@ export const repos = useStorage<{
 export const issues = useStorage<{
   recent: Issue[]
   pinned: Issue[]
-}>('gh-dashboard:issues', {
+}>(`${APP_NAME}:issues`, {
   recent: [],
   pinned: [],
 })
