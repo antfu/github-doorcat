@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import App from './Menu.vue'
+import Repos from './views/Repos.vue'
 import { userid } from './env'
 import { updateRecentRepos } from './storage'
 
@@ -15,9 +15,9 @@ import { updateRecentRepos } from './storage'
   console.log('Hi', userid)
 
   const nav = document.querySelector('nav')!
-  const container = document.createElement('div')
-  nav.prepend(container)
-  createApp(App).mount(container)
+  const repos = document.createElement('div')
+  nav.prepend(repos)
+  createApp(Repos).mount(repos)
 
   await updateRecentRepos()
 })()

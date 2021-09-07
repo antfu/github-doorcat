@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import { options, pinnedRepos } from './storage'
+import { options, repos } from '../storage'
 
 const props = defineProps<{
   repo: string
 }>()
 
-const pinned = computed(() => pinnedRepos.value.includes(props.repo))
+const pinned = computed(() => repos.value.pinned.includes(props.repo))
 
 function toggle(e: MouseEvent) {
   e.stopImmediatePropagation()
   e.preventDefault()
 
   if (!pinned.value)
-    pinnedRepos.value.push(props.repo)
+    repos.value.pinned.push(props.repo)
   else
-    pinnedRepos.value = pinnedRepos.value.filter(x => x !== props.repo)
+    repos.value.pinned.filter(x => x !== props.repo)
 }
 </script>
 

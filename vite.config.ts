@@ -41,19 +41,6 @@ export const sharedConfig: UserConfig = {
       dts: r('src/auto-imports.d.ts'),
     }),
 
-    Components({
-      dirs: [r('src/components')],
-      // generate `components.d.ts` for ts support with Volar
-      dts: true,
-      resolvers: [
-        // auto import icons
-        // https://github.com/antfu/vite-plugin-icons
-        IconsResolver({
-          componentPrefix: '',
-        }),
-      ],
-    }),
-
     // https://github.com/antfu/vite-plugin-icons
     Icons(),
 
@@ -71,6 +58,7 @@ export const sharedConfig: UserConfig = {
     include: [
       'vue',
       '@vueuse/core',
+      'webextension-polyfill',
     ],
     exclude: [
       'vue-demi',
@@ -106,9 +94,18 @@ export default defineConfig(({ command }) => ({
   plugins: [
     ...sharedConfig.plugins!,
 
-    // https://github.com/antfu/vite-plugin-windicss
     WindiCSS({
       config: windiConfig,
+    }),
+
+    Components({
+      dirs: [r('src/components')],
+      dts: true,
+      resolvers: [
+        IconsResolver({
+          componentPrefix: '',
+        }),
+      ],
     }),
   ],
 }))
