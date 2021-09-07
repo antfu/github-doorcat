@@ -10,6 +10,9 @@ browser.webNavigation.onCommitted.addListener(({ tabId, frameId, url }) => {
   if (isForbiddenUrl(url))
     return
 
+  if (!url.startsWith('https://github.com'))
+    return
+
   // inject the latest scripts
   browser.tabs.executeScript(tabId, {
     file: `${isFirefox ? '' : '.'}/dist/contentScripts/index.global.js`,

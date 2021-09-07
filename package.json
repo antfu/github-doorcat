@@ -1,8 +1,8 @@
 {
-  "name": "vitesse-webext",
-  "displayName": "Vitesse WebExt",
+  "name": "github-dashboard",
+  "displayName": "GitHub Dashboard",
   "version": "0.0.1",
-  "description": "[description]",
+  "description": "Navigate GitHub effortlessly",
   "private": true,
   "scripts": {
     "dev": "npm run clear && cross-env NODE_ENV=development run-p dev:*",
