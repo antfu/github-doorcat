@@ -13,6 +13,7 @@ export async function getManifest() {
     name: pkg.displayName || pkg.name,
     version: pkg.version,
     description: pkg.description,
+    minimum_chrome_version: '88',
     // browser_action: {
     //   default_icon: './assets/icon-512.png',
     //   default_popup: './dist/popup/index.html',
@@ -32,14 +33,18 @@ export async function getManifest() {
       128: './assets/icon-512.png',
     },
     permissions: [
-      'tabs',
       'storage',
-      'activeTab',
-      'https://github.com/**/*',
+      'https://github.com/*',
+      'https://api.github.com/*',
+      'https://github.dev/*',
     ],
     content_scripts: [{
-      matches: ['http://*/*', 'https://*/*'],
-      js: ['./dist/contentScripts/index.global.js'],
+      matches: [
+        'https://github.com/*',
+      ],
+      js: [
+        './dist/contentScripts/index.global.js',
+      ],
     }],
     web_accessible_resources: [
       'dist/contentScripts/style.css',
