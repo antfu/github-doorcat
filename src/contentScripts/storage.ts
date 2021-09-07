@@ -1,5 +1,6 @@
 import { useStorage } from '@vueuse/core'
 import { fetchRecentRepos } from './fetch'
+import { Issue } from './types'
 
 const RECENT_REPO_TTL = 1000 * 60 * 30 // 30 minutes
 
@@ -9,6 +10,14 @@ export const repos = useStorage<{
   pinned: string[]
 }>('gh-dashboard:repos', {
   lastUpdated: 0,
+  recent: [],
+  pinned: [],
+})
+
+export const issues = useStorage<{
+  recent: Issue[]
+  pinned: Issue[]
+}>('gh-dashboard:issues', {
   recent: [],
   pinned: [],
 })

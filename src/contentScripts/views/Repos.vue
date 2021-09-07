@@ -12,7 +12,7 @@ const recent = computed(() => repos.value.recent.filter(i => !repos.value.pinned
     <template #>
       <!-- Pinned -->
       <template v-if="repos.pinned.length">
-        <Item
+        <RepoItem
           v-for="i of repos.pinned"
           :key="i"
           :repo="i"
@@ -25,7 +25,7 @@ const recent = computed(() => repos.value.recent.filter(i => !repos.value.pinned
       </div>
 
       <!-- Recent -->
-      <Item
+      <RepoItem
         v-for="i of recent"
         :key="i"
         :repo="i"

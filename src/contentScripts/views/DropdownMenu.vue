@@ -7,7 +7,7 @@ withDefaults(defineProps<{
 </script>
 
 <template>
-  <div class="Header-item position-relative d-none d-md-flex">
+  <div class="Header-item position-relative d-none d-md-flex" style="user-select:none;">
     <details class="details-overlay details-reset">
       <summary
         class="Header-link"
@@ -26,6 +26,15 @@ withDefaults(defineProps<{
 
 <style lang="postcss">
 .gh-dashboard-menu {
+  transform: translateX(50%);
   --color-state-hover-primary-bg: rgba(125, 125, 125, 0.15);
+
+  &::before {
+    right: calc(50% - 4px);
+  }
+
+  &::after {
+    right: calc(50% - 3px);
+  }
 }
 </style>

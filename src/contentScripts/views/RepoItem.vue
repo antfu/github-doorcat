@@ -64,7 +64,7 @@ function toggle(e: MouseEvent) {
   </a>
 </template>
 
-<style scoped lang="postcss">
+<style lang="postcss">
 .gh-dashboard-item {
   .icon-button {
     opacity: 0;

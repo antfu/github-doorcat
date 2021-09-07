@@ -4,10 +4,25 @@
 declare module 'vue' {
   export interface GlobalComponents {
     DropdownMenu: typeof import('./views/DropdownMenu.vue')['default']
-    Item: typeof import('./views/Item.vue')['default']
+    IssueItem: typeof import('./views/IssueItem.vue')['default']
+    Issues: typeof import('./views/Issues.vue')['default']
     'Mdi:bookmark': typeof import('~icons/mdi/bookmark')['default']
     'Mdi:bookmarkOutline': typeof import('~icons/mdi/bookmark-outline')['default']
     MdiMicrosoftVisualStudioCode: typeof import('~icons/mdi/microsoft-visual-studio-code')['default']
+    'Octicon:gitMerge16': typeof import('~icons/octicon/git-merge16')['default']
+    'Octicon:gitMerge24': typeof import('~icons/octicon/git-merge24')['default']
+    'Octicon:gitPullRequest16': typeof import('~icons/octicon/git-pull-request16')['default']
+    'Octicon:gitPullRequest24': typeof import('~icons/octicon/git-pull-request24')['default']
+    'Octicon:gitPullRequestClosed16': typeof import('~icons/octicon/git-pull-request-closed16')['default']
+    'Octicon:gitPullRequestClosed24': typeof import('~icons/octicon/git-pull-request-closed24')['default']
+    'Octicon:gitPullRequestDraft16': typeof import('~icons/octicon/git-pull-request-draft16')['default']
+    'Octicon:gitPullRequestDraft24': typeof import('~icons/octicon/git-pull-request-draft24')['default']
+    'Octicon:issueClosed16': typeof import('~icons/octicon/issue-closed16')['default']
+    'Octicon:issueClosed24': typeof import('~icons/octicon/issue-closed24')['default']
+    'Octicon:issueOpened16': typeof import('~icons/octicon/issue-opened16')['default']
+    'Octicon:issueOpened24': typeof import('~icons/octicon/issue-opened24')['default']
+    Pulls: typeof import('./views/Pulls.vue')['default']
+    RepoItem: typeof import('./views/RepoItem.vue')['default']
     Repos: typeof import('./views/Repos.vue')['default']
   }
 }
