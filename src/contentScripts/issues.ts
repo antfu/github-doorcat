@@ -35,28 +35,42 @@ export function scanIssue() {
   })
 }
 
-function updateIssue(issue: Issue) {
-  const existing = [...issues.value.recent, ...pulls.value.recent].find(i => i.id === issue.id)
-
-  if (existing)
-    return Object.assign(existing, issue)
-
-  const target = issue.type === 'issues'
-    ? issues.value.recent
-    : pulls.value.recent
-
-  target.unshift(issue)
-  if (target.length > MAX_RECENT_ISSUES)
-    target.splice(MAX_RECENT_ISSUES, target.length - MAX_RECENT_ISSUES)
-}
-
 export function togglePinnedIssue(issue: Issue) {
-  const target = issue.type === 'issues'
-    ? issues.value
-    : pulls.value
+  const target = getTargetCollection(issue)
 
   if (target.pinned.find(i => i.id === issue.id))
     target.pinned = target.pinned.filter(i => i.id !== issue.id)
   else
     target.pinned.unshift(issue)
+}
+
+export function removeIssue(issue: Issue) {
+  const target = getTargetCollection(issue)
+  target.pinned = target.pinned.filter(i => i.id !== issue.id)
+  target.recent = target.recent.filter(i => i.id !== issue.id)
+}
+
+function updateIssue(issue: Issue, hoist = true) {
+  const target = getTargetCollection(issue)
+  const existing = target.recent.find(i => i.id === issue.id)
+
+  if (existing) {
+    Object.assign(existing, issue)
+    if (hoist) {
+      const index = target.recent.indexOf(existing)
+      target.recent.splice(index, 1)
+      target.recent.unshift(existing)
+    }
+  }
+  else {
+    target.recent.unshift(issue)
+    if (target.recent.length > MAX_RECENT_ISSUES)
+      target.recent.splice(MAX_RECENT_ISSUES, target.recent.length - MAX_RECENT_ISSUES)
+  }
+}
+
+function getTargetCollection(issue: Issue) {
+  return issue.type === 'issues'
+    ? issues.value
+    : pulls.value
 }

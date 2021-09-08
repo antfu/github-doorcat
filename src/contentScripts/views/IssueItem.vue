@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Issue } from '../types'
-import { togglePinnedIssue } from '../issues'
+import { togglePinnedIssue, removeIssue } from '../issues'
 import { issues, pulls } from '../storage'
 
 const props = defineProps<{
@@ -48,6 +48,15 @@ const pinned = computed(() =>
     >
       <mdi:bookmark v-if="pinned" style="margin: auto;" />
       <mdi:bookmark-outline v-else style="margin: auto;" />
+    </a>
+
+    <a
+      title="Remove"
+      class="icon-button"
+      style="margin: auto 0; display: flex;"
+      @click.prevent="removeIssue(issue)"
+    >
+      <mdi:close style="margin: auto;" />
     </a>
   </a>
 </template>

@@ -9,6 +9,7 @@ declare module 'vue' {
     Issues: typeof import('./views/Issues.vue')['default']
     'Mdi:bookmark': typeof import('~icons/mdi/bookmark')['default']
     'Mdi:bookmarkOutline': typeof import('~icons/mdi/bookmark-outline')['default']
+    'Mdi:close': typeof import('~icons/mdi/close')['default']
     MdiMicrosoftVisualStudioCode: typeof import('~icons/mdi/microsoft-visual-studio-code')['default']
     'Octicon:gitMerge16': typeof import('~icons/octicon/git-merge16')['default']
     'Octicon:gitMerge24': typeof import('~icons/octicon/git-merge24')['default']
