@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { createApp } from 'vue'
 import Repos from './views/Repos.vue'
 import Pulls from './views/Pulls.vue'
@@ -6,6 +5,8 @@ import Issues from './views/Issues.vue'
 import { userid } from './env'
 import { updateRecentRepos } from './repos'
 import { scanIssue } from './issues'
+import { refreshIssues } from './fetch'
+import { log } from './log'
 
 (async() => {
   if (!userid)
@@ -16,7 +17,7 @@ import { scanIssue } from './issues'
   styleEl.setAttribute('href', browser.runtime.getURL('dist/contentScripts/style.css'))
   document.head.appendChild(styleEl)
 
-  console.log('Hi', userid)
+  log('Hello', userid)
 
   const nav = document.querySelector('nav')!
 
@@ -40,4 +41,5 @@ import { scanIssue } from './issues'
   scanIssue()
 
   await updateRecentRepos()
+  refreshIssues()
 })()

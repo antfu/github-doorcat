@@ -2,7 +2,7 @@
   "name": "github-doorcat",
   "displayName": "Doorcat for GitHub",
   "version": "0.0.1",
-  "description": "Supercharges GitHub navbar for quicker navigation.",
+  "description": "Supercharges GitHub navbar",
   "private": true,
   "scripts": {
     "dev": "npm run clear && cross-env NODE_ENV=development run-p dev:*",
@@ -46,12 +46,15 @@
     "unplugin-auto-import": "^0.4.5",
     "unplugin-icons": "^0.7.6",
     "unplugin-vue-components": "^0.14.13",
-    "vite-plugin-windicss": "^1.4.2",
     "vite": "^2.5.4",
+    "vite-plugin-windicss": "^1.4.2",
     "vue": "^3.2.9",
     "vue-demi": "^0.11.4",
     "web-ext": "^6.3.0",
     "webext-bridge": "^4.1.1",
     "webextension-polyfill": "^0.8.0"
+  },
+  "dependencies": {
+    "p-limit": "^4.0.0"
   }
 }

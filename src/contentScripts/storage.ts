@@ -1,8 +1,6 @@
 import { useStorage } from '@vueuse/core'
+import { APP_NAME } from './constants'
 import { Issue } from './types'
-
-export const RECENT_REPO_TTL = 1000 * 60 * 30 // 30 minutes
-const APP_NAME = 'doorcat'
 
 export const repos = useStorage<{
   lastUpdated: number

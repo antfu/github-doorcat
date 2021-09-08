@@ -1,5 +1,6 @@
+import { RECENT_REPO_TTL } from './constants'
 import { fetchRecentRepos } from './fetch'
-import { repos, RECENT_REPO_TTL } from './storage'
+import { repos } from './storage'
 
 export async function updateRecentRepos(force = false) {
   if (!force && repos.value.lastUpdated && repos.value.lastUpdated > Date.now() - RECENT_REPO_TTL)

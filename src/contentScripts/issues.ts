@@ -50,7 +50,7 @@ export function removeIssue(issue: Issue) {
   target.recent = target.recent.filter(i => i.id !== issue.id)
 }
 
-function updateIssue(issue: Issue, hoist = true) {
+export function updateIssue(issue: Issue, hoist = true) {
   const target = getTargetCollection(issue)
   const existing = target.recent.find(i => i.id === issue.id)
 
