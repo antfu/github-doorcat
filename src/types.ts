@@ -3,4 +3,8 @@ export interface Options {
   showOwnerName: boolean
   githubDev: boolean
   excludeClosed: boolean
+
+  // TODO:
+  accessToken?: string
+  recentLimit?: number
 }
