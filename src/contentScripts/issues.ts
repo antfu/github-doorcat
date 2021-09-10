@@ -1,4 +1,4 @@
-import { issues, pulls } from './storage'
+import { issues, options, pulls } from './storage'
 import { Issue } from './types'
 
 const MAX_RECENT_ISSUES = 20
@@ -55,6 +55,11 @@ export function updateIssue(issue: Issue, hoist = true) {
   const existing = target.recent.find(i => i.id === issue.id)
 
   if (existing) {
+    if (options.value.ignoreClosed && isClosed(issue)) {
+      const index = target.recent.indexOf(existing)
+      target.recent.splice(index, 1)
+      return
+    }
     Object.assign(existing, issue)
     if (hoist) {
       const index = target.recent.indexOf(existing)
@@ -63,6 +68,9 @@ export function updateIssue(issue: Issue, hoist = true) {
     }
   }
   else {
+    if (options.value.ignoreClosed && isClosed(issue))
+      return
+
     target.recent.unshift(issue)
     if (target.recent.length > MAX_RECENT_ISSUES)
       target.recent.splice(MAX_RECENT_ISSUES, target.recent.length - MAX_RECENT_ISSUES)
@@ -73,4 +81,25 @@ function getTargetCollection(issue: Issue) {
   return issue.type === 'issues'
     ? issues.value
     : pulls.value
+}
+
+export function isClosed(issue: Issue) {
+  return issue.state === 'closed' || issue.state === 'merged'
+}
+
+export function getRecent(type: 'issues' | 'pull') {
+  const target = type === 'issues'
+    ? issues.value
+    : pulls.value
+  const pinnedIds = target.pinned.map(i => i.id)
+  return target.recent
+    .filter(
+      (i) => {
+        if (pinnedIds.includes(i.id))
+          return false
+        if (options.value.ignoreClosed && isClosed(i))
+          return false
+        return true
+      })
+    .slice(0, 10)
 }

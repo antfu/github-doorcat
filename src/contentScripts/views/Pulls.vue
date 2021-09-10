@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { pulls } from '../storage'
+import { getRecent } from '../issues'
 
 defineProps<{
   href: string
 }>()
 
-const pinnedIds = computed(() => pulls.value.pinned.map(i => i.id))
-const recent = computed(() => pulls.value.recent.filter(i => !pinnedIds.value.includes(i.id)).slice(0, 10))
+const recent = computed(() => getRecent('pull'))
 </script>
 
 <template>

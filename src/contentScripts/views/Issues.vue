@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { issues } from '../storage'
+import { getRecent } from '../issues'
 
 defineProps<{
   href: string
 }>()
 
-const pinnedIds = computed(() => issues.value.pinned.map(i => i.id))
-const recent = computed(() => issues.value.recent.filter(i => !pinnedIds.value.includes(i.id)).slice(0, 10))
+const recent = computed(() => getRecent('pull'))
 </script>
 
 <template>
@@ -21,15 +21,19 @@ const recent = computed(() => issues.value.recent.filter(i => !pinnedIds.value.i
         :href="href"
       >Issues Created</a>
 
-     <template v-if="issues.pinned.length">
+      <template v-if="issues.pinned.length">
         <div role="none" class="dropdown-divider"></div>
-        <div class="doorcat-subheader">Pinned</div>
+        <div class="doorcat-subheader">
+          Pinned
+        </div>
         <IssueItem v-for="i of issues.pinned" :key="i.id" :issue="i" />
       </template>
 
       <template v-if="recent.length">
         <div role="none" class="dropdown-divider"></div>
-        <div class="doorcat-subheader">Recent</div>
+        <div class="doorcat-subheader">
+          Recent
+        </div>
         <IssueItem v-for="i of recent" :key="i.id" :issue="i" />
       </template>
     </template>
