@@ -20,6 +20,9 @@
     "start:chromium": "web-ext run --source-dir ./extension --target=chromium",
     "start:firefox": "web-ext run --source-dir ./extension --target=firefox-desktop",
     "clear": "rimraf extension/dist extension/manifest.json extension.*",
+    "release": "bumpp --commit --tag --push",
+    "publish": "nr build && run-s publish:*",
+    "publish:chrome": "webstore --source extension --extension-id leopkcbkkpiclajlgiioobnkbkplfogf --auto-publish",
     "lint": "eslint 'src/**/*.{json,ts,js,vue}'"
   },
   "devDependencies": {
@@ -33,7 +36,9 @@
     "@vitejs/plugin-vue": "^1.6.1",
     "@vue/compiler-sfc": "^3.2.9",
     "@vueuse/core": "^6.2.1",
+    "bumpp": "^7.1.1",
     "chokidar": "^3.5.2",
+    "chrome-webstore-upload-cli": "^1.2.1",
     "cross-env": "^7.0.3",
     "crx": "^5.0.1",
     "eslint": "^7.32.0",
