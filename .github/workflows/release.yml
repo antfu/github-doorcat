@@ -19,6 +19,7 @@ jobs:
       - run: npm i -g pnpm @antfu/ni
       - run: nci
       - run: npx conventional-github-releaser -p angular
+        continue-on-error: true
         env:
           CONVENTIONAL_GITHUB_RELEASER_TOKEN: ${{secrets.GITHUB_TOKEN}}
       - run: npm run publish
