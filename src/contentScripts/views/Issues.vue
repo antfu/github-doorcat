@@ -6,7 +6,7 @@ defineProps<{
   href: string
 }>()
 
-const recent = computed(() => getRecent('pull'))
+const recent = computed(() => getRecent('issues'))
 </script>
 
 <template>
