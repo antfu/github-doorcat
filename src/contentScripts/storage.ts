@@ -33,4 +33,5 @@ export const options = ref({
   showAvatar: true,
   showOwnerName: true,
   githubDev: true,
+  ignoreClosed: true,
 })

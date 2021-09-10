@@ -59,16 +59,15 @@ const pinned = computed(() => repos.value.pinned.includes(props.repo))
 .doorcat-item {
   .icon-button {
     opacity: 0;
-    color: #ffffff80;
+    color: var(--color-text-primary);
     padding: 4px 2px;
-
-    &:hover {
-      color: #fff;
-    }
   }
 
   &:hover .icon-button {
-    opacity: 1;
+    opacity: 0.5 !important;
+  }
+  &:hover .icon-button:hover {
+    opacity: 1 !important;
   }
 }
 </style>

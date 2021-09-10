@@ -26,7 +26,7 @@ withDefaults(defineProps<{
 <style lang="postcss">
 .doorcat-menu {
   transform: translateX(50%) translateY(5px);
-  --color-state-hover-primary-bg: rgba(125, 125, 125, 0.15);
+  --color-state-hover-primary-bg: rgba(125, 125, 125, 0.1);
 
   &::before {
     right: calc(50% - 4px);
@@ -34,6 +34,10 @@ withDefaults(defineProps<{
 
   &::after {
     right: calc(50% - 3px);
+  }
+
+  & .dropdown-item {
+    color: var(--color-text-primary) !important;
   }
 
   .doorcat-subheader {
