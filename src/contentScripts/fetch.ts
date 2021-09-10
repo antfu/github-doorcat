@@ -33,12 +33,16 @@ export async function fetchIssueUpdate(issue: Issue, force = false) {
 }
 
 export async function fetchRecentRepos() {
-  const activity = await fetchRecentActivity(100)
-
-  const repos = new Set<string>()
-  activity.forEach(i => repos.add(i.repo.name))
-
-  return Array.from(repos)
+  try {
+    const activity = await fetchRecentActivity(100)
+    const repos = new Set<string>()
+    activity.forEach(i => repos.add(i.repo.name))
+    return Array.from(repos)
+  }
+  catch (e) {
+    console.error('[Doorcat]', e)
+    return []
+  }
 }
 
 export async function refreshIssues() {
@@ -51,7 +55,12 @@ export async function refreshIssues() {
     ...pulls.value.pinned,
   ]
 
-  await Promise.allSettled(all.map(i => limit(() => fetchIssueUpdate(i))))
+  try {
+    await Promise.allSettled(all.map(i => limit(() => fetchIssueUpdate(i))))
+  }
+  catch (e) {
+    console.error('[Doorcat]', e)
+  }
 
   triggerRef(issues)
   triggerRef(pulls)

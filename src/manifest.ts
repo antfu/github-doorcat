@@ -14,10 +14,10 @@ export async function getManifest() {
     version: pkg.version,
     description: pkg.description,
     minimum_chrome_version: '88',
-    // browser_action: {
-    //   default_icon: './assets/icon-512.png',
-    //   default_popup: './dist/popup/index.html',
-    // },
+    browser_action: {
+      default_icon: './assets/icon-512.png',
+      default_popup: './dist/popup/index.html',
+    },
     // options_ui: {
     //   page: './dist/options/index.html',
     //   open_in_tab: true,

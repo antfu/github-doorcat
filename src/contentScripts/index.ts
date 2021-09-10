@@ -7,10 +7,13 @@ import { updateRecentRepos } from './repos'
 import { scanIssue } from './issues'
 import { refreshIssues } from './fetch'
 import { log } from './log'
+import { initContext } from '~/options'
 
 (async() => {
   if (!userid)
     return
+
+  initContext()
 
   const styleEl = document.createElement('link')
   styleEl.setAttribute('rel', 'stylesheet')

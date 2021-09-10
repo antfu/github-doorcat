@@ -27,11 +27,3 @@ export const pulls = useStorage<{
   recent: [],
   pinned: [],
 })
-
-// TODO: move to options pages and pass by messages
-export const options = ref({
-  showAvatar: true,
-  showOwnerName: true,
-  githubDev: true,
-  ignoreClosed: true,
-})

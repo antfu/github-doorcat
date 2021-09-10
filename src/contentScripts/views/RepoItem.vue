@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { options, repos } from '../storage'
+import { repos } from '../storage'
+import { options } from '../../options'
 import { togglePinnedRepo } from '../repos'
 
 const props = defineProps<{
