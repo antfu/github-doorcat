@@ -22,7 +22,7 @@
     "clear": "rimraf extension/dist extension/manifest.json extension.*",
     "release": "bumpp --commit --tag --push",
     "publish": "nr build && run-s publish:*",
-    "publish:chrome": "webstore --source extension --extension-id leopkcbkkpiclajlgiioobnkbkplfogf --auto-publish",
+    "publish:chrome": "webstore upload --source extension --extension-id leopkcbkkpiclajlgiioobnkbkplfogf --auto-publish",
     "lint": "eslint 'src/**/*.{json,ts,js,vue}'"
   },
   "devDependencies": {
