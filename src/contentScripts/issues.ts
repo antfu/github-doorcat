@@ -54,6 +54,14 @@ export function removeIssue(issue: Issue) {
 export function updateIssue(issue: Issue, hoist = true) {
   const target = getTargetCollection(issue)
   const existing = target.recent.find(i => i.id === issue.id)
+  const pinned = target.pinned.find(i => i.id === issue.id)
+
+  if (pinned) {
+    if (options.value.unpinClosed && isClosed(issue))
+      togglePinnedIssue(issue)
+    else
+      Object.assign(pinned, issue)
+  }
 
   if (existing) {
     if (options.value.excludeClosed && isClosed(issue)) {
@@ -61,6 +69,7 @@ export function updateIssue(issue: Issue, hoist = true) {
       target.recent.splice(index, 1)
       return
     }
+
     Object.assign(existing, issue)
     if (hoist) {
       const index = target.recent.indexOf(existing)

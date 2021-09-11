@@ -7,6 +7,7 @@ const defaultOptions: Options = {
   showOwnerName: true,
   githubDev: true,
   excludeClosed: true,
+  unpinClosed: true,
 }
 
 export const options = getCurrentContext() === 'background'
