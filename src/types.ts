@@ -3,6 +3,7 @@ export interface Options {
   showOwnerName: boolean
   githubDev: boolean
   excludeClosed: boolean
+  unpinClosed: boolean
 
   // TODO:
   accessToken?: string
