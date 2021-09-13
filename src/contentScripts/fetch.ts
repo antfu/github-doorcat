@@ -1,7 +1,7 @@
 import pLimit from 'p-limit'
 import { RECENT_ISSUE_TTL } from './constants'
 import { userid } from './env'
-import { updateIssue } from './issues'
+import { removeIssue, updateIssue } from './issues'
 import { issues, pulls } from './storage'
 import { Issue } from './types'
 
@@ -20,8 +20,14 @@ export async function fetchIssueUpdate(issue: Issue, force = false) {
   if (!force && issue.lastUpdated && issue.lastUpdated > Date.now() - RECENT_ISSUE_TTL)
     return issue
 
-  const data = await fetch(`https://api.github.com/repos/${issue.repo}/issues/${issue.number}`)
-    .then(r => r.json())
+  const response = await fetch(`https://api.github.com/repos/${issue.repo}/issues/${issue.number}`)
+
+  if (response.status === 410) {
+    removeIssue(issue)
+    return issue
+  }
+
+  const data = await response.json()
 
   if (data?.state) {
     issue.title = data.title
@@ -29,6 +35,7 @@ export async function fetchIssueUpdate(issue: Issue, force = false) {
     issue.lastUpdated = Date.now()
     updateIssue(issue, false)
   }
+
   return issue
 }
 
