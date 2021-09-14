@@ -10,6 +10,7 @@ import { r, port, isDev } from './scripts/utils'
 
 export const sharedConfig: UserConfig = {
   root: r('src'),
+  publicDir: r('extension/assets'),
   resolve: {
     alias: {
       '~/': `${r('src')}/`,

@@ -1,7 +1,7 @@
 <template>
   <main class="px-4 py-4 text-center text-gray-700 dark:text-gray-200 select-none">
     <div class="flex gap-2 mb-4">
-      <img src="../../extension/assets/icon-512.png" class="icon-btn h-12" />
+      <img src="/icon-512.png" class="icon-btn h-12" />
       <div class="my-auto text-left">
         <div class="text-xl">
           Doorcat
@@ -15,6 +15,9 @@
     <div class="h-1px w-full bg-gray-400/10"></div>
 
     <div class="flex flex-col px-2 py-1">
+      <h6 class="text-left mt-2 opacity-50 mt-5 mb-0">
+        Repos
+      </h6>
       <label class="checkbox">
         <input v-model="options.showOwnerName" type="checkbox">
         <span>Show repo owner name</span>
@@ -23,10 +26,29 @@
         <input v-model="options.githubDev" type="checkbox">
         <span>Show button for GitHub.Dev</span>
       </label>
+      <h6 class="text-left mt-2 opacity-50 mt-5 mb-0">
+        Issues / Pulls
+      </h6>
       <label class="checkbox">
         <input v-model="options.excludeClosed" type="checkbox">
-        <span>Exclude closed Issues/Pulls</span>
+        <span>Exclude closed issues / pulls</span>
       </label>
+      <label class="checkbox">
+        <input v-model="options.unpinClosed" type="checkbox">
+        <span>Auto unpin closed issues / pulls</span>
+      </label>
+      <h6 class="text-left mt-2 opacity-50 mt-5 mb-0">
+        Account
+      </h6>
+      <button
+        text="left xs"
+        m="y-2"
+        p="x-4 y-2"
+        class="bg-gray-400/10 hover:bg-gray-400/20"
+        border="~ rounded gray-400/50"
+      >
+        Set Personal Access Token
+      </button>
     </div>
   </main>
 </template>
@@ -42,14 +64,16 @@ useDark()
 <style scoped lang="postcss">
 input {
   --tw-ring-offset-width: 1px !important;
-  --tw-ring-color: #06b6d450 !important;
+  --tw-ring-color: #8885 !important;
+  --tw-ring-offset-color: transparent !important;
 }
 
 .checkbox {
   @apply inline-flex items-center mt-3 cursor-pointer;
 
   input {
-    @apply rounded-md h-4 w-4 dark:text-cyan-400 text-cyan-500;
+    @apply bg-gray-400/50;
+    @apply rounded-md h-4 w-4;
   }
 
   span {
