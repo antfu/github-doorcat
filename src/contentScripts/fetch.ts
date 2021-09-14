@@ -28,7 +28,6 @@ export async function fetchIssueUpdate(issue: Issue, force = false) {
   if (!force && issue.lastUpdated && issue.lastUpdated > Date.now() - RECENT_ISSUE_TTL)
     return issue
 
-  console.log({ headers: headers.value })
   const response = await fetch(
     `${API_ENTRY}/repos/${issue.repo}/issues/${issue.number}`,
     {
