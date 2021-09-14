@@ -13,8 +13,6 @@ import { initContext } from '~/options'
   if (!userid)
     return
 
-  initContext()
-
   const styleEl = document.createElement('link')
   styleEl.setAttribute('rel', 'stylesheet')
   styleEl.setAttribute('href', browser.runtime.getURL('dist/contentScripts/style.css'))
@@ -38,6 +36,8 @@ import { initContext } from '~/options'
   createApp(Issues, { href: issuesEl.href }).mount(issues)
   createApp(Pulls, { href: pullsEl.href }).mount(pulls)
   createApp(Repos).mount(repos)
+
+  await initContext()
 
   // listen to github page loaded event
   document.addEventListener('pjax:end', () => scanIssue())

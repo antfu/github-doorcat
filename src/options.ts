@@ -14,7 +14,7 @@ export const options = getCurrentContext() === 'background'
   ? useStorage('options', defaultOptions)
   : ref(defaultOptions)
 
-export function initContext(type?: 'background' | 'popup') {
+export async function initContext(type?: 'background' | 'popup') {
   // popup shares the same storage as background,
   // useStorage will auto sync the ref so we don't need to do anything here.
   if (type === 'popup')
@@ -41,8 +41,11 @@ export function initContext(type?: 'background' | 'popup') {
       },
       { deep: true },
     )
+    return
   }
-  else {
+
+  // context script
+  return new Promise<void>((resolve) => {
     const { ignoreUpdates } = ignorableWatch(
       options,
       () => sendMessage('set-options', options.value),
@@ -53,6 +56,7 @@ export function initContext(type?: 'background' | 'popup') {
         ignoreUpdates(() => {
           // @ts-expect-error FIXME
           options.value = v
+          resolve()
         })
       })
     onMessage('set-options', ({ data }) => {
@@ -60,5 +64,14 @@ export function initContext(type?: 'background' | 'popup') {
         options.value = data
       })
     })
-  }
+  })
 }
+
+export const headers = computed(() => {
+  const h: Record<string, string> = {}
+
+  if (options.value.accessToken)
+    h.Authorization = `token ${options.value.accessToken}`
+
+  return h
+})

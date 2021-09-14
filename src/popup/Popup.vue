@@ -40,15 +40,18 @@
       <h6 class="text-left mt-2 opacity-50 mt-5 mb-0">
         Account
       </h6>
-      <button
-        text="left xs"
-        m="y-2"
-        p="x-4 y-2"
-        class="bg-gray-400/10 hover:bg-gray-400/20"
-        border="~ rounded gray-400/50"
-      >
-        Set Personal Access Token
-      </button>
+      <div text="left">
+        <button
+          text="left xs"
+          m="y-2"
+          p="x-3 y-1"
+          class="bg-gray-400/10 hover:bg-gray-400/20 !outline-none"
+          border="~ rounded gray-400/30 hover:gray-400/50"
+          @click="setPAT"
+        >
+          {{ options.accessToken ? 'Change' : 'Set'}} Personal Access Token
+        </button>
+      </div>
     </div>
   </main>
 </template>
@@ -59,6 +62,12 @@ import { version } from '../../package.json'
 import { options } from '~/options'
 
 useDark()
+
+function setPAT() {
+  const pat = prompt('Enter your Personal Access Token:')
+  if (pat)
+    options.value.accessToken = pat
+}
 </script>
 
 <style scoped lang="postcss">

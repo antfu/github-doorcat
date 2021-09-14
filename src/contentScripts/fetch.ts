@@ -1,9 +1,12 @@
 import pLimit from 'p-limit'
+import { headers } from '../options'
 import { RECENT_ISSUE_TTL } from './constants'
 import { userid } from './env'
 import { removeIssue, updateIssue } from './issues'
 import { issues, pulls } from './storage'
 import { Issue } from './types'
+
+const API_ENTRY = 'https://api.github.com'
 
 export interface Activity {
   repo: {
@@ -12,7 +15,12 @@ export interface Activity {
 }
 
 export async function fetchRecentActivity(pages = 100): Promise<Activity[]> {
-  return await fetch(`https://api.github.com/users/${userid}/events?per_page=${pages}`)
+  return await fetch(
+    `${API_ENTRY}/users/${userid}/events?per_page=${pages}`,
+    {
+      headers: headers.value,
+    },
+  )
     .then(r => r.json())
 }
 
@@ -20,7 +28,13 @@ export async function fetchIssueUpdate(issue: Issue, force = false) {
   if (!force && issue.lastUpdated && issue.lastUpdated > Date.now() - RECENT_ISSUE_TTL)
     return issue
 
-  const response = await fetch(`https://api.github.com/repos/${issue.repo}/issues/${issue.number}`)
+  console.log({ headers: headers.value })
+  const response = await fetch(
+    `${API_ENTRY}/repos/${issue.repo}/issues/${issue.number}`,
+    {
+      headers: headers.value,
+    },
+  )
 
   if (response.status === 410) {
     removeIssue(issue)
