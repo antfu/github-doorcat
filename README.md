@@ -2,7 +2,7 @@
 
 Supercharges GitHub navbar for fast navigation.
 
-> 🚧 Work in progress (in low priority, contributions welcome!). You will need to build it locally at this moment.
+> 🚧 Work in progress (in low priority, contributions welcome!)
 
 <p><a href="https://chrome.google.com/webstore/detail/doorcat-for-github/leopkcbkkpiclajlgiioobnkbkplfogf"><img src="https://storage.googleapis.com/chrome-gcs-uploader.appspot.com/image/WlD8wC6g8khYWPJUsQceQkhXSlv1/HRs9MPufa1J1h5glNhut.png" alt="Chrome Web Store" height="60"></a></p>
 
