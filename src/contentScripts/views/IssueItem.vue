@@ -40,7 +40,7 @@ const pinned = computed(() =>
     </div>
 
     <!-- pin -->
-    <a
+    <button
       title="Pin"
       class="icon-button"
       style="margin: auto 0; display: flex;"
@@ -48,15 +48,15 @@ const pinned = computed(() =>
     >
       <mdi:bookmark v-if="pinned" style="margin: auto;" />
       <mdi:bookmark-outline v-else style="margin: auto;" />
-    </a>
+    </button>
 
-    <a
+    <button
       title="Remove"
       class="icon-button"
       style="margin: auto 0; display: flex;"
       @click.prevent="removeIssue(issue)"
     >
       <mdi:close style="margin: auto;" />
-    </a>
+    </button>
   </a>
 </template>

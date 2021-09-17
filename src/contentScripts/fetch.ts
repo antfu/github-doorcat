@@ -85,3 +85,18 @@ export async function refreshIssues() {
   triggerRef(issues)
   triggerRef(pulls)
 }
+
+export async function repositoryExists(repository: string) {
+  try {
+    const response = await fetch(
+      `${API_ENTRY}/repos/${repository}`,
+      {
+        headers: headers.value,
+      },
+    )
+    return response.status === 200
+  }
+  catch (e) {
+    return false
+  }
+}
