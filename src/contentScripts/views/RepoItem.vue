@@ -1,13 +1,17 @@
 <script setup lang="ts">
 import { repos } from '../storage'
 import { options } from '../../options'
-import { togglePinnedRepo } from '../repos'
+import { togglePinnedRepo, changeRepoName } from '../repos'
 
 const props = defineProps<{
   repo: string
 }>()
 
 const pinned = computed(() => repos.value.pinned.includes(props.repo))
+const aliasName = (name) => {
+  const alias = repos.value.details[name]
+  return alias
+}
 </script>
 
 <template>
@@ -27,10 +31,24 @@ const pinned = computed(() => repos.value.pinned.includes(props.repo))
 
     <!-- name -->
     <div style="margin: auto 0; flex: 1 1 auto; overflow: hidden; text-overflow: ellipsis;">
-      <span v-if="options.showOwnerName" style="opacity:0.5">{{ repo.split('/')[0] }}/</span>
-      <span style="text-overflow: ellipsis;">{{ repo.split('/')[1] }}</span>
+      <span v-if="aliasName(repo)">
+        <span style="text-overflow: ellipsis;">{{ aliasName(repo) }}</span>
+      </span>
+      <span v-else>
+        <span v-if="options.showOwnerName" style="opacity:0.5">{{ repo.split('/')[0] }}/</span>
+        <span style="text-overflow: ellipsis;">{{ repo.split('/')[1] }}</span>
+      </span>
     </div>
 
+    <!-- rename -->
+    <span
+      title="Rename"
+      class="icon-button"
+      style="margin: auto 0; display: flex;"
+      @click.prevent="changeRepoName(repo)"
+    >
+      <mdi-grease-pencil style="margin: auto;" />
+    </span>
     <!-- pin -->
     <button
       title="Pin"

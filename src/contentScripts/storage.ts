@@ -6,10 +6,12 @@ export const repos = useStorage<{
   lastUpdated: number
   recent: string[]
   pinned: string[]
+  details: Record<string, string>
 }>(`${APP_NAME}:repos`, {
   lastUpdated: 0,
   recent: [],
   pinned: [],
+  details: {},
 })
 
 export const issues = useStorage<{

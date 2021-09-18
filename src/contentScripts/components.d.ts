@@ -16,6 +16,7 @@ declare module 'vue' {
     'Mdi:loading': typeof import('~icons/mdi/loading')['default']
     'Mdi:plus': typeof import('~icons/mdi/plus')['default']
     'Mdi:plusBoxOutline': typeof import('~icons/mdi/plus-box-outline')['default']
+    MdiGreasePencil: typeof import('~icons/mdi/grease-pencil')['default']
     MdiMicrosoftVisualStudioCode: typeof import('~icons/mdi/microsoft-visual-studio-code')['default']
     NavBar: typeof import('./views/NavBar.vue')['default']
     'Octicon:gitMerge16': typeof import('~icons/octicon/git-merge16')['default']
