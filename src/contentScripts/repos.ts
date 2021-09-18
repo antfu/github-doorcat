@@ -1,5 +1,5 @@
 import { RECENT_REPO_TTL } from './constants'
-import { fetchRecentRepos } from './fetch'
+import { fetchRecentRepos, repositoryExists } from './fetch'
 import { repos } from './storage'
 
 export async function updateRecentRepos(force = false) {
@@ -17,4 +17,11 @@ export function togglePinnedRepo(repo: string) {
     repos.value.pinned.unshift(repo)
   else
     repos.value.pinned = repos.value.pinned.filter(x => x !== repo)
+}
+
+export async function togglePinnedRepoIfExists(repo: string) {
+  if (!await repositoryExists(repo))
+    return false
+  togglePinnedRepo(repo)
+  return true
 }

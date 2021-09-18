@@ -32,7 +32,7 @@ const pinned = computed(() => repos.value.pinned.includes(props.repo))
     </div>
 
     <!-- pin -->
-    <a
+    <button
       title="Pin"
       class="icon-button"
       style="margin: auto 0; display: flex;"
@@ -40,10 +40,10 @@ const pinned = computed(() => repos.value.pinned.includes(props.repo))
     >
       <mdi:bookmark v-if="pinned" style="margin: auto;" />
       <mdi:bookmark-outline v-else style="margin: auto;" />
-    </a>
+    </button>
 
     <!-- github.dev -->
-    <a
+    <button
       v-if="options.githubDev"
       title="Open in github.dev"
       class="icon-button"
@@ -52,23 +52,27 @@ const pinned = computed(() => repos.value.pinned.includes(props.repo))
       style="margin: auto 0; display: flex;"
     >
       <mdi-microsoft-visual-studio-code style="margin: auto;" />
-    </a>
+    </button>
   </a>
 </template>
 
 <style lang="postcss">
-.doorcat-item {
+.doorcat-item, .doorcat-subheader {
   .icon-button {
     opacity: 0;
-    color: var(--color-text-primary);
-    padding: 4px 2px;
   }
-
   &:hover .icon-button {
     opacity: 0.5 !important;
   }
   &:hover .icon-button:hover {
     opacity: 1 !important;
   }
+}
+
+.icon-button {
+  color: var(--color-text-primary);
+  padding: 4px 2px;
+  border: none;
+  background-color: transparent;
 }
 </style>
