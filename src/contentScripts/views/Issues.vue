@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import { issues } from '../storage'
 import { getRecent } from '../issues'
-
-defineProps<{
-  href: string
-}>()
+import { useid } from '../env'
 
 const recent = computed(() => getRecent('issues'))
 </script>
@@ -16,9 +13,9 @@ const recent = computed(() => getRecent('issues'))
     </template>
     <template #>
       <a
-        class="dropdown-item"
+        class="dropdown-item doorcat-item"
         role="menuitem"
-        :href="href"
+        :href="`/issues?q=is%3Apr+is%3Aopen+author%3A${userid}+archived%3Afalse+sort%3Aupdated-desc`"
       >Issues Created</a>
 
       <template v-if="issues.pinned.length">

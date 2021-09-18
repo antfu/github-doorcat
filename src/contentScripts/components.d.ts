@@ -17,6 +17,7 @@ declare module 'vue' {
     'Mdi:plus': typeof import('~icons/mdi/plus')['default']
     'Mdi:plusBoxOutline': typeof import('~icons/mdi/plus-box-outline')['default']
     MdiMicrosoftVisualStudioCode: typeof import('~icons/mdi/microsoft-visual-studio-code')['default']
+    NavBar: typeof import('./views/NavBar.vue')['default']
     'Octicon:gitMerge16': typeof import('~icons/octicon/git-merge16')['default']
     'Octicon:gitMerge24': typeof import('~icons/octicon/git-merge24')['default']
     'Octicon:gitPullRequest16': typeof import('~icons/octicon/git-pull-request16')['default']
