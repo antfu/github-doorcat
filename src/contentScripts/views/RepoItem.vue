@@ -57,6 +57,12 @@ const pinned = computed(() => repos.value.pinned.includes(props.repo))
 </template>
 
 <style lang="postcss">
+.doorcat-item {
+  &:hover {
+    background: rgba(125,125,125,0.2);
+  }
+}
+
 .doorcat-item, .doorcat-subheader {
   .icon-button {
     opacity: 0;
