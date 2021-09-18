@@ -14,6 +14,7 @@ declare module 'vue' {
     'Mdi:check': typeof import('~icons/mdi/check')['default']
     'Mdi:close': typeof import('~icons/mdi/close')['default']
     'Mdi:loading': typeof import('~icons/mdi/loading')['default']
+    'Mdi:plus': typeof import('~icons/mdi/plus')['default']
     'Mdi:plusBoxOutline': typeof import('~icons/mdi/plus-box-outline')['default']
     MdiMicrosoftVisualStudioCode: typeof import('~icons/mdi/microsoft-visual-studio-code')['default']
     'Octicon:gitMerge16': typeof import('~icons/octicon/git-merge16')['default']

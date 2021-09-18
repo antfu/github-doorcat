@@ -3,31 +3,13 @@ import { repos } from '../storage'
 import { togglePinnedRepoIfExists } from '../repos'
 
 const recent = computed(() => repos.value.recent.filter(i => !repos.value.pinned.includes(i)).slice(0, 10))
-const inputCustomRepo = ref(false)
-const repoName = ref('')
-const customPinLoading = ref(false)
-const customPinError = ref(false)
 
-async function onValidateCustomPin() {
-  if (repoName.value.length === 0 || customPinLoading.value)
+async function promptForCustomRepo() {
+  const input = prompt('Enter the repo id:')
+  if (!input)
     return
-  customPinLoading.value = true
-  if (await togglePinnedRepoIfExists(repoName.value)) {
-    repoName.value = ''
-    inputCustomRepo.value = false
-    customPinError.value = false
-  }
-  else {
-    customPinError.value = true
-  }
-  customPinLoading.value = false
-}
-
-function CancelCustomPin() {
-  repoName.value = ''
-  inputCustomRepo.value = false
-  customPinError.value = false
-  customPinLoading.value = false
+  if (!await togglePinnedRepoIfExists(input))
+    alert(`repo "${input}" does not exist`)
 }
 </script>
 
@@ -37,57 +19,16 @@ function CancelCustomPin() {
       Repos
     </template>
     <template #>
-      <div class="doorcat-subheader flex justify-between" style="display: flex; justify-content: space-between; align-items: center;">
+      <div class="doorcat-subheader" style="display: flex; justify-content: space-between; align-items: center;">
         <span>Pinned</span>
         <button
-          v-if="!inputCustomRepo"
           title="Add"
           style="margin-right: 8px;"
           class="icon-button"
-          @click="inputCustomRepo = true"
+          @click="promptForCustomRepo"
         >
-          <mdi:plus-box-outline />
+          <mdi:plus />
         </button>
-        <form v-else style="width: 100%; display: flex; justify-content: flex-end; align-items: center;" @submit.prevent="onValidateCustomPin">
-          <input
-            id="customRepoName"
-            v-model="repoName"
-            type="text"
-            name="customRepoName"
-            title="Repository"
-            class="customRepoInput"
-            :class="{ 'error': customPinError }"
-            @input="customPinError = false"
-          >
-
-          <button
-            v-if="!customPinLoading"
-            type="submit"
-            title="Submit"
-            class="icon-button"
-            :disabled="customPinError"
-            :class="{ 'error': customPinError }"
-            style="margin-right: 8px;"
-          >
-            <mdi:check />
-          </button>
-          <span
-            v-else
-            title="Loading"
-            class="icon-button spinner"
-            style="margin-right: 8px;"
-          >
-            <mdi:loading />
-          </span>
-          <button
-            title="Cancel"
-            class="icon-button"
-            style="margin-right: 8px;"
-            @click="CancelCustomPin"
-          >
-            <mdi:cancel />
-          </button>
-        </form>
       </div>
       <template v-if="repos.pinned.length">
         <RepoItem
