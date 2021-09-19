@@ -7,3 +7,5 @@ export interface Issue {
   type: 'issues' | 'pull'
   lastUpdated: number
 }
+
+export type Details = Record<string, { alias?: string }>
