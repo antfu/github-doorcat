@@ -49,7 +49,7 @@
           border="~ rounded gray-400/30 hover:gray-400/50"
           @click="setPAT"
         >
-          {{ options.accessToken ? 'Change' : 'Set'}} Personal Access Token
+          {{ options.accessToken ? 'Change' : 'Set' }} Personal Access Token
         </button>
       </div>
     </div>
