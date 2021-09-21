@@ -1,6 +1,6 @@
 import { useStorage } from '@vueuse/core'
-import { APP_NAME } from './constants'
-import { Issue, RepoDetail } from './types'
+import { Issue, RepoDetail } from '~/types'
+import { APP_NAME } from '~/constants'
 
 export const repos = useStorage<{
   lastUpdated: number

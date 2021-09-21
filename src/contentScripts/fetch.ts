@@ -1,10 +1,10 @@
 import pLimit from 'p-limit'
-import { headers } from '../options'
-import { RECENT_ISSUE_TTL } from './constants'
 import { userid } from './env'
 import { removeIssue, updateIssue } from './issues'
 import { issues, pulls } from './storage'
-import { Issue } from './types'
+import { RECENT_ISSUE_TTL } from '~/constants'
+import { Issue } from '~/types'
+import { headers } from '~/options'
 
 const API_ENTRY = 'https://api.github.com'
 

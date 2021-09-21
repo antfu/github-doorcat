@@ -1,6 +1,6 @@
-import { options } from '../options'
 import { issues, pulls } from './storage'
-import { Issue } from './types'
+import { options } from '~/options'
+import { Issue } from '~/types'
 
 const MAX_RECENT_ISSUES = 20
 
