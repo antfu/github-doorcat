@@ -5,10 +5,9 @@ import { repos } from './storage'
 export async function updateRecentRepos(force = false) {
   if (!force && repos.value.lastUpdated && repos.value.lastUpdated > Date.now() - RECENT_REPO_TTL)
     return repos
-
-  repos.value.recent = await fetchRecentRepos()
+  const items = await fetchRecentRepos()
+  repos.value.recent = items
   repos.value.lastUpdated = Date.now()
-
   return repos
 }
 
@@ -24,4 +23,19 @@ export async function togglePinnedRepoIfExists(repo: string) {
     return false
   togglePinnedRepo(repo)
   return true
+}
+
+export function changeRepoName(repo: string) {
+  // eslint-disable-next-line no-alert
+  const alias = prompt('Enter your custom repository name:')
+  if (alias == null)
+    return
+
+  if (!repos.value.details)
+    repos.value.details = {}
+
+  if (!repos.value.details[repo])
+    repos.value.details[repo] = {}
+
+  repos.value.details[repo].alias = alias
 }

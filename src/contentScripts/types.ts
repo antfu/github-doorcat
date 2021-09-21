@@ -7,3 +7,7 @@ export interface Issue {
   type: 'issues' | 'pull'
   lastUpdated: number
 }
+
+export interface RepoDetail {
+  alias?: string
+}
