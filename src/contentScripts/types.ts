@@ -8,4 +8,6 @@ export interface Issue {
   lastUpdated: number
 }
 
-export type Details = Record<string, { alias?: string }>
+export interface RepoDetail {
+  alias?: string
+}

@@ -1,12 +1,12 @@
 import { useStorage } from '@vueuse/core'
 import { APP_NAME } from './constants'
-import { Issue, Details } from './types'
+import { Issue, RepoDetail } from './types'
 
 export const repos = useStorage<{
   lastUpdated: number
   recent: string[]
   pinned: string[]
-  details: Details
+  details: Record<string, RepoDetail>
 }>(`${APP_NAME}:repos`, {
   lastUpdated: 0,
   recent: [],

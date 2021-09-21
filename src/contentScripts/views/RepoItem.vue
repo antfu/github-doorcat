@@ -8,9 +8,9 @@ const props = defineProps<{
 }>()
 
 const pinned = computed(() => repos.value.pinned.includes(props.repo))
-const getAliasName = (name) => {
-  const alias = repos.value.details[name]?.alias
-  return alias
+
+const getAlias = (name: string) => {
+  return repos.value.details?.[name]?.alias
 }
 </script>
 
@@ -31,8 +31,8 @@ const getAliasName = (name) => {
 
     <!-- name -->
     <div style="margin: auto 0; flex: 1 1 auto; overflow: hidden; text-overflow: ellipsis;">
-      <span v-if="getAliasName(repo)">
-        <span style="text-overflow: ellipsis;">{{ getAliasName(repo) }}</span>
+      <span v-if="getAlias(repo)">
+        <span style="text-overflow: ellipsis;">{{ getAlias(repo) }}</span>
       </span>
       <span v-else>
         <span v-if="options.showOwnerName" style="opacity:0.5">{{ repo.split('/')[0] }}/</span>
@@ -42,13 +42,15 @@ const getAliasName = (name) => {
 
     <!-- rename -->
     <span
+      v-if="pinned"
       title="Rename"
       class="icon-button"
       style="margin: auto 0; display: flex;"
       @click.prevent="changeRepoName(repo)"
     >
-      <mdi-grease-pencil style="margin: auto;" />
+      <mdi-pencil style="margin: auto;" />
     </span>
+
     <!-- pin -->
     <button
       title="Pin"
