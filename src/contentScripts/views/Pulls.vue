@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { pulls } from '../storage'
 import { getRecent } from '../issues'
-import { useid } from '../env'
+import { userid } from '../env'
 
 const recent = computed(() => getRecent('pull'))
 </script>
@@ -20,13 +20,17 @@ const recent = computed(() => getRecent('pull'))
 
       <template v-if="pulls.pinned.length">
         <div role="none" class="dropdown-divider"></div>
-        <div class="doorcat-subheader">Pinned</div>
+        <div class="doorcat-subheader">
+          Pinned
+        </div>
         <IssueItem v-for="i of pulls.pinned" :key="i.id" :issue="i" />
       </template>
 
       <template v-if="recent.length">
         <div role="none" class="dropdown-divider"></div>
-        <div class="doorcat-subheader">Recent</div>
+        <div class="doorcat-subheader">
+          Recent
+        </div>
         <IssueItem v-for="i of recent" :key="i.id" :issue="i" />
       </template>
     </template>

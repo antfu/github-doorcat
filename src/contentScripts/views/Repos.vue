@@ -50,28 +50,3 @@ async function promptForCustomRepo() {
     </template>
   </DropdownMenu>
 </template>
-
-<style lang="postcss">
-.customRepoInput {
-  flex: 1;
-  margin: 0;
-  padding: 0;
-  margin-left: 8px;
-  margin-right: 8px;
-  height: 18px;
-  &.error {
-    border-color: red;
-    color: red
-  }
-}
-
-.spinner {
-  display: block;
-  -webkit-animation: spin 2s infinite linear;
-}
-
-@-webkit-keyframes spin {
-  0%  {-webkit-transform: rotate(0deg);}
-  100% {-webkit-transform: rotate(360deg);}
-}
-</style>

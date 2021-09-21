@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { issues } from '../storage'
 import { getRecent } from '../issues'
-import { useid } from '../env'
+import { userid } from '../env'
 
 const recent = computed(() => getRecent('issues'))
 </script>
