@@ -2,6 +2,7 @@
 import { issues } from '../storage'
 import { getRecent } from '../issues'
 import { userid } from '../env'
+import { options } from '~/options'
 
 const recent = computed(() => getRecent('issues'))
 </script>
@@ -10,6 +11,10 @@ const recent = computed(() => getRecent('issues'))
   <DropdownMenu :width="500">
     <template #label>
       Issues
+      <sup
+        v-if="issues.pinned.length && options.pinnedIssueCount"
+        style="color: var(--color-success-fg)"
+      >{{ issues.pinned.length }}</sup>
     </template>
     <template #>
       <a
@@ -20,17 +25,13 @@ const recent = computed(() => getRecent('issues'))
 
       <template v-if="issues.pinned.length">
         <div role="none" class="dropdown-divider"></div>
-        <div class="doorcat-subheader">
-          Pinned
-        </div>
+        <div class="doorcat-subheader">Pinned</div>
         <IssueItem v-for="i of issues.pinned" :key="i.id" :issue="i" />
       </template>
 
       <template v-if="recent.length">
         <div role="none" class="dropdown-divider"></div>
-        <div class="doorcat-subheader">
-          Recent
-        </div>
+        <div class="doorcat-subheader">Recent</div>
         <IssueItem v-for="i of recent" :key="i.id" :issue="i" />
       </template>
     </template>

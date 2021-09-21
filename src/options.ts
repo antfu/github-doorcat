@@ -8,6 +8,7 @@ const defaultOptions: Options = {
   githubDev: true,
   excludeClosed: true,
   unpinClosed: true,
+  pinnedIssueCount: true,
 }
 
 export const options = getCurrentContext() === 'background'

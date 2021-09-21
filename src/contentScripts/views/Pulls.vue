@@ -2,6 +2,7 @@
 import { pulls } from '../storage'
 import { getRecent } from '../issues'
 import { userid } from '../env'
+import { options } from '~/options'
 
 const recent = computed(() => getRecent('pull'))
 </script>
@@ -10,6 +11,10 @@ const recent = computed(() => getRecent('pull'))
   <DropdownMenu :width="500">
     <template #label>
       Pulls
+      <sup
+        v-if="pulls.pinned.length && options.pinnedIssueCount"
+        style="color: var(--color-success-fg)"
+      >{{ pulls.pinned.length }}</sup>
     </template>
     <template #>
       <a

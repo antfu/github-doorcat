@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { togglePinnedIssue, removeIssue } from '../issues'
 import { issues, pulls } from '../storage'
-import { options } from '~/options'
 import type { Issue } from '~/types'
 
 const props = defineProps<{

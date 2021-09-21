@@ -5,6 +5,7 @@ export interface Options {
   excludeClosed: boolean
   unpinClosed: boolean
   accessToken?: string
+  pinnedIssueCount: boolean
 
   // TODO:
   recentLimit?: number

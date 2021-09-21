@@ -30,6 +30,10 @@
         Issues / Pulls
       </h6>
       <label class="checkbox">
+        <input v-model="options.pinnedIssueCount" type="checkbox">
+        <span>Show pinned count in title</span>
+      </label>
+      <label class="checkbox">
         <input v-model="options.excludeClosed" type="checkbox">
         <span>Exclude closed issues / pulls</span>
       </label>
