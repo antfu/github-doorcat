@@ -1,7 +1,3 @@
-<script setup lang="ts">
-import { userid } from '../env'
-</script>
-
 <template>
   <Repos />
   <Pulls />

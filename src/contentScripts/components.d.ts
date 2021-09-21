@@ -7,6 +7,7 @@ declare module 'vue' {
     DropdownMenu: typeof import('./views/DropdownMenu.vue')['default']
     IssueItem: typeof import('./views/IssueItem.vue')['default']
     Issues: typeof import('./views/Issues.vue')['default']
+    IssueState: typeof import('./views/IssueState.vue')['default']
     'Mdi:bookmark': typeof import('~icons/mdi/bookmark')['default']
     'Mdi:bookmarkOutline': typeof import('~icons/mdi/bookmark-outline')['default']
     'Mdi:bookmarkPlusOutline': typeof import('~icons/mdi/bookmark-plus-outline')['default']
