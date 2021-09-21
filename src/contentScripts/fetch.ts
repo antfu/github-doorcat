@@ -14,26 +14,24 @@ export interface Activity {
   }
 }
 
-export async function fetchRecentActivity(pages = 100): Promise<Activity[]> {
+export async function get(path: string) {
   return await fetch(
-    `${API_ENTRY}/users/${userid}/events?per_page=${pages}`,
+    API_ENTRY + path,
     {
       headers: headers.value,
     },
   )
-    .then(r => r.json())
+}
+
+export async function fetchRecentActivity(pages = 100): Promise<Activity[]> {
+  return await get(`/users/${userid}/events?per_page=${pages}`).then(r => r.json())
 }
 
 export async function fetchIssueUpdate(issue: Issue, force = false) {
   if (!force && issue.lastUpdated && issue.lastUpdated > Date.now() - RECENT_ISSUE_TTL)
     return issue
 
-  const response = await fetch(
-    `${API_ENTRY}/repos/${issue.repo}/issues/${issue.number}`,
-    {
-      headers: headers.value,
-    },
-  )
+  const response = await get(`/repos/${issue.repo}/issues/${issue.number}`)
 
   if (response.status === 410) {
     removeIssue(issue)
@@ -51,7 +49,6 @@ export async function fetchIssueUpdate(issue: Issue, force = false) {
 
   return issue
 }
-
 export async function fetchRecentRepos() {
   try {
     const activity = await fetchRecentActivity(100)
@@ -88,12 +85,7 @@ export async function refreshIssues() {
 
 export async function repositoryExists(repository: string) {
   try {
-    const response = await fetch(
-      `${API_ENTRY}/repos/${repository}`,
-      {
-        headers: headers.value,
-      },
-    )
+    const response = await get(`/repos/${repository}`)
     return response.status === 200
   }
   catch (e) {
