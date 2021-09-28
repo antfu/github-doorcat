@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { togglePinnedIssue, removeIssue } from '../issues'
 import { issues, pulls } from '../storage'
+import { options } from '../../options'
 import type { Issue } from '~/types'
 
 const props = defineProps<{
@@ -21,7 +22,13 @@ const pinned = computed(() =>
     style="display: flex;"
   >
     <div style="display: flex; place-content: center; margin: auto 8px auto -5px; font-size: 16px;">
-      <IssueState :issue="issue" />
+      <img
+        v-if="options.showRepoAvatar"
+        class="avatar avatar-user"
+        :src="`/${issue.repo.split('/')[0]}.png`"
+        style="width: 1.2em; height: 1.2em; vertical-align: middle;"
+      />
+      <IssueState v-else :issue="issue" />
     </div>
 
     <!-- name -->

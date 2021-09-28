@@ -1,5 +1,6 @@
 export interface Options {
   showAvatar: boolean
+  showRepoAvatar: boolean
   showOwnerName: boolean
   githubDev: boolean
   excludeClosed: boolean

@@ -4,6 +4,7 @@ import type { Options } from './types'
 
 const defaultOptions: Options = {
   showAvatar: true,
+  showRepoAvatar: false,
   showOwnerName: true,
   githubDev: true,
   excludeClosed: true,
