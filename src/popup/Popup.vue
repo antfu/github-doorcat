@@ -30,6 +30,10 @@
         Issues / Pulls
       </h6>
       <label class="checkbox">
+        <input v-model="options.showRepoAvatar" type="checkbox">
+        <span>Show repo avatar</span>
+      </label>
+      <label class="checkbox">
         <input v-model="options.pinnedIssueCount" type="checkbox">
         <span>Show pinned count in title</span>
       </label>
