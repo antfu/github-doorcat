@@ -1,7 +1,7 @@
 {
   "name": "github-doorcat",
   "displayName": "Doorcat for GitHub",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "private": true,
   "description": "Supercharges GitHub navbar",
   "scripts": {
