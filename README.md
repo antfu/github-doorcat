@@ -1,3 +1,9 @@
+# [Deprecated]
+
+### [You probably don't need this, press Ctrl+K](https://twitter.com/natfriedman/status/1453386746293485570)
+
+---
+
 <h1><img src="./extension/assets/icon.svg" height="90"/>Doorcat for GitHub</h1>
 
 Supercharges GitHub navbar for fast navigation.
